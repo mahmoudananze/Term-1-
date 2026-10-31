@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grade 12 Advanced | Term 1 Revision Hub</title>
+<style>
+:root{--navy:#132849;--navy2:#24466b;--gold:#b99443;--bg:#f5f7fb;--ink:#21304a;--muted:#59687b;--line:#dce3ef;
+--c-vocab:#0e7c86;--c-grammar:#6b4fbb;--c-reading:#d9822b;--c-writing:#2f8f5b;--c-mock:#c0392b}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(120deg,#102443,#24466b);color:#fff;padding:38px max(20px,calc((100vw - 1050px)/2)) 34px}
+.tag{color:#e4c678;letter-spacing:2px;font-weight:700;font-size:12px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:8px 0}
+header p{opacity:.92;margin:4px 0}
+.btn,button{background:var(--navy);color:#fff;border:0;border-radius:9px;padding:10px 16px;cursor:pointer;font:inherit;font-weight:650;text-decoration:none;display:inline-block}
+.btn.alt{background:var(--gold);color:#172742}
+.btn.ghost,button.ghost{background:#eef2f8;color:var(--navy)}
+button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #e4c678;outline-offset:2px}
+nav{display:flex;gap:6px;overflow-x:auto;background:#fff;padding:10px max(14px,calc((100vw - 1050px)/2));position:sticky;top:0;box-shadow:0 2px 12px #0001;z-index:5}
+nav button{background:transparent;color:var(--navy);display:flex;align-items:center;gap:8px;white-space:nowrap;padding:8px 12px;border-radius:10px}
+nav button:hover{background:#eef2f8}
+nav button[aria-current="page"]{background:var(--navy);color:#fff}
+nav svg{width:19px;height:19px}
+main{max-width:1050px;margin:auto;padding:22px 18px 60px}
+.view[hidden]{display:none}
+.card{background:#fff;border-radius:16px;padding:24px;margin:18px 0;box-shadow:0 4px 20px #11223a0b}
+h2{color:var(--navy);margin:0 0 6px}h3{color:#254568;margin:18px 0 6px}
+.small{font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+/* home icon tiles */
+.hubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:16px;margin:6px 0 4px}
+.hub{--c:var(--navy);text-align:left;background:#fff;color:var(--ink);border:2px solid transparent;border-radius:18px;padding:22px 18px;box-shadow:0 6px 22px #11223a14;display:flex;flex-direction:column;gap:8px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.hub:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 12px 28px #11223a22}
+.ico{width:60px;height:60px;border-radius:16px;background:var(--c);color:#fff;display:grid;place-items:center}
+.ico svg{width:30px;height:30px}
+.hub b{font-size:19px;color:var(--navy)}
+.hub span.d{font-size:14px;color:var(--muted);font-weight:500}
+.hub .badge{margin-top:auto;align-self:flex-start;font-size:12px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:20px;padding:3px 10px}
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.glance .tile h2{margin:2px 0;font-size:26px}
+/* section header */
+.sechead{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.sechead .ico{width:54px;height:54px}
+.sechead h2{font-size:26px}
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px;border-bottom:2px solid var(--line);padding-bottom:0}
+.tabs button{background:transparent;color:var(--muted);border-radius:10px 10px 0 0;padding:10px 16px;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs button[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--accent,var(--navy));background:#f1f5fb}
+.panel[hidden]{display:none}
+.panel{padding-top:14px}
+/* quiz */
+.question{padding:14px 0;border-bottom:1px solid #e4e8ef}
+.question label{display:block;margin:7px 0;padding:9px 11px;background:#f4f6fa;border-radius:8px;cursor:pointer;border:1px solid transparent}
+.question label:hover{border-color:#c5d1e4}
+.question input{margin-right:8px}
+.feedback{font-weight:700;margin-top:10px}
+.good{color:#177345}.bad{color:#b02f36}
+.bar{height:8px;background:#e6ebf3;border-radius:6px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:var(--accent,var(--navy));transition:width .3s}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+/* flashcards */
+.fc{perspective:900px;max-width:520px;margin:10px auto}
+.fc-inner{position:relative;height:210px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;padding:22px;box-shadow:0 8px 24px #11223a1c}
+.fc-front{background:linear-gradient(135deg,var(--c-vocab),#12a1ad);color:#fff;font-size:30px;font-weight:700}
+.fc-back{background:#fff;color:var(--ink);transform:rotateY(180deg);font-size:19px;border:2px solid var(--c-vocab)}
+.fcnav{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+/* match */
+.mrow{display:grid;grid-template-columns:minmax(120px,170px) 1fr 28px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #e4e8ef}
+.mrow select{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:8px;font:inherit;background:#fff}
+/* lessons */
+details{border:1px solid #dbe1eb;border-radius:12px;padding:12px 14px;margin:9px 0;background:#fff}
+summary{cursor:pointer;font-weight:650;color:var(--navy)}
+.ex{background:#f1ecfb;border-radius:8px;padding:8px 12px;margin:8px 0;font-style:italic}
+/* steps */
+.steps{counter-reset:s;display:grid;gap:10px;padding:0;list-style:none}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.steps li:before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent,var(--navy));color:#fff;display:grid;place-items:center;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{background:#eaf6ef;color:#1f6b45;border:1px solid #bfe1cd;border-radius:20px;padding:5px 12px;font-weight:600;font-size:14px}
+button.chip{cursor:pointer}
+button.chip:hover{background:#d5eee0}
+.check label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}
+textarea{width:100%;min-height:160px;border:1px solid #cbd5e1;border-radius:10px;padding:14px;font:inherit;margin-top:8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:6px 0 10px}
+.seg button{background:#fff;color:var(--navy);border-radius:0;padding:9px 16px}
+.seg button[aria-pressed="true"]{background:var(--c-writing);color:#fff}
+.linkcard{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+footer{text-align:center;padding:25px;color:#64748b}
+@media(max-width:600px){.card{padding:18px}header{padding:28px 20px}.mrow{grid-template-columns:1fr}.mrow span.r{display:none}nav button span{display:none}nav button[aria-current="page"] span{display:inline}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+<symbol id="i-vocab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+<symbol id="i-grammar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></symbol>
+<symbol id="i-reading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-writing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+<symbol id="i-mock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 14 11 16 15 12"/></symbol>
+</defs>
+</svg>
+
+<header>
+  <div class="tag">THE SCIENTIFIC INSTITUTE · ENGLISH DEPARTMENT</div>
+  <h1>Grade 12 Advanced<br>Term 1 Revision Hub</h1>
+  <p>2026–2027 · Stage 9 · B2.2 · Reading challenge up to C1.1</p>
+  <p>Teacher: Dr. Mahmoud Ananzeh</p>
+  <p style="margin-top:14px"><a class="btn alt" href="G12_Advanced_Term1_Revision_Booklet.pdf" target="_blank" rel="noopener">Open full 39-page booklet ↗</a></p>
+</header>
+
+<nav id="nav" aria-label="Sections">
+  <button data-go="home"><svg><use href="#i-home"/></svg><span>Home</span></button>
+  <button data-go="vocab"><svg><use href="#i-vocab"/></svg><span>Vocabulary</span></button>
+  <button data-go="grammar"><svg><use href="#i-grammar"/></svg><span>Grammar</span></button>
+  <button data-go="reading"><svg><use href="#i-reading"/></svg><span>Reading</span></button>
+  <button data-go="writing"><svg><use href="#i-writing"/></svg><span>Writing</span></button>
+  <button data-go="mock"><svg><use href="#i-mock"/></svg><span>Mock exam</span></button>
+</nav>
+
+<main>
+<!-- HOME -->
+<section id="home" class="view">
+  <div class="card">
+    <h2>Choose a section</h2>
+    <p class="small">Tap an icon to open that part of your revision. Your best quiz scores are saved on this device.</p>
+    <div class="hubs">
+      <button class="hub" data-go="vocab" style="--c:var(--c-vocab)"><div class="ico"><svg><use href="#i-vocab"/></svg></div><b>Vocabulary</b><span class="d">Flashcards, matching and an 8-question quiz</span><span class="badge" id="b-vocab">Not tried yet</span></button>
+      <button class="hub" data-go="grammar" style="--c:var(--c-grammar)"><div class="ico"><svg><use href="#i-grammar"/></svg></div><b>Grammar</b><span class="d">Six quick lessons and an 8-question quiz</span><span class="badge" id="b-grammar">Not tried yet</span></button>
+      <button class="hub" data-go="reading" style="--c:var(--c-reading)"><div class="ico"><svg><use href="#i-reading"/></svg></div><b>Reading</b><span class="d">Exam method and the four question types</span><span class="badge">3A · 3B</span></button>
+      <button class="hub" data-go="writing" style="--c:var(--c-writing)"><div class="ico"><svg><use href="#i-writing"/></svg></div><b>Writing</b><span class="d">Task 1.1 summary and Task 1.2 essay workshop</span><span class="badge">2 tasks</span></button>
+      <button class="hub" data-go="mock" style="--c:var(--c-mock)"><div class="ico"><svg><use href="#i-mock"/></svg></div><b>Mock exam</b><span class="d">Full 100-mark paper and answer key</span><span class="badge">Booklet p.26</span></button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Your exam at a glance</h2>
+    <div class="glance">
+      <div class="tile"><b>Vocabulary</b><h2>10 marks</h2><span class="small">5 gaps · A/B/C</span></div>
+      <div class="tile"><b>Grammar</b><h2>10 marks</h2><span class="small">5 gaps · A/B/C</span></div>
+      <div class="tile"><b>Reading</b><h2>40 marks</h2><span class="small">Two texts · 16 questions</span></div>
+      <div class="tile"><b>Writing</b><h2>40 marks</h2><span class="small">Summary + comparative essay</span></div>
+    </div>
+    <p class="small" style="margin-bottom:0">Practise the activities, then complete the full 100-mark mock in the booklet. These are revision activities, not official exam questions.</p>
+  </div>
+</section>
+
+<!-- VOCAB -->
+<section id="vocab" class="view" hidden style="--accent:var(--c-vocab)">
+  <div class="card">
+    <div class="sechead"><div class="ico" style="--c:var(--c-vocab);background:var(--c-vocab)"><svg><use href="#i-vocab"/></svg></div><div><h2>Vocabulary</h2><div class="small">Themes: <b>Pushing Boundaries</b> and <b>Rise to the Challenge!</b></div></div></div>
+    <div class="tabs" role="tablist" data-tabs>
+      <button role="tab" data-tab="learn" aria-selected="true">Flashcards</button>
+      <button role="tab" data-tab="match" aria-selected="false">Match</button>
+      <button role="tab" data-tab="quiz" aria-selected="false">Quiz</button>
+      <button role="tab" data-tab="list" aria-selected="false">Word list</button>
+    </div>
+    <div class="panel" data-panel="learn">
+      <p class="small">Tap the card to see the meaning.</p>
+      <div class="fc" id="fc"><div class="fc-inner" id="fcInner" tabindex="0" role="button" aria-label="Flip card"><div class="fc-face fc-front" id="fcFront"></div><div class="fc-face fc-back" id="fcBack"></div></div></div>
+      <div class="fcnav"><button class="ghost" id="fcPrev">← Previous</button><span class="small" id="fcCount"></span><button class="ghost" id="fcNext">Next →</button><button class="ghost" id="fcShuffle">Shuffle</button></div>
+    </div>
+    <div class="panel" data-panel="match" hidden>
+      <p class="small">Choose the correct meaning for each word.</p>
+      <div id="matchBox"></div>
+      <div class="actions"><button onclick="checkMatch()">Check matches</button><button class="ghost" onclick="newMatch()">New round</button><span class="feedback" id="matchResult" aria-live="polite"></span></div>
+    </div>
+    <div class="panel" data-panel="quiz" hidden>
+      <div class="bar"><i id="vocabBar"></i></div>
+      <div id="vocabQuiz"></div>
+      <div class="actions"><button onclick="grade('vocab')">Check vocabulary answers</button><button class="ghost" onclick="resetQuiz('vocab')">Try again</button></div>
+      <p id="vocabResult" class="feedback" aria-live="polite"></p>
+    </div>
+    <div class="panel" data-panel="list" hidden>
+      <div id="words" class="grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAMMAR -->
+<section id="grammar" class="view" hidden style="--accent:var(--c-grammar)">
+  <div class="card">
+    <div class="sechead"><div class="ico" style="background:var(--c-grammar)"><svg><use href="#i-grammar"/></svg></div><div><h2>Grammar</h2><div class="small">Six exam structures with practice</div></div></div>
+    <div class="tabs" role="tablist" data-tabs>
+      <button role="tab" data-tab="lessons" aria-selected="true">Lessons</button>
+      <button role="tab" data-tab="quiz" aria-selected="false">Quiz</button>
+    </div>
+    <div class="panel" data-panel="lessons">
+      <p class="small">Open each lesson to see the rule and an example.</p>
+      <details open><summary>Zero conditional</summary><p>If + present simple, present simple.</p><div class="ex">If it rains, the soil absorbs water.</div></details>
+      <details><summary>Comparatives</summary><p>cooler than · more efficient than · better than</p><div class="ex">A shaded roof is cooler than an exposed roof.</div></details>
+      <details><summary>Present simple passive</summary><p>am / is / are + past participle</p><div class="ex">Rainwater is stored in a tank.</div></details>
+      <details><summary>Indirect questions</summary><p>Use statement word order after the question word.</p><div class="ex">Could you tell me where the water goes?</div></details>
+      <details><summary>Linkers</summary><p><b>however</b> (contrast) · <b>moreover</b> (addition) · <b>therefore</b> (result)</p><div class="ex">It is costly. However, it offers long-term savings.</div></details>
+      <details><summary>Sequencing</summary><p>First · Next · Then · Finally</p><div class="ex">First, inspect the roof. Next, add the protective layer.</div></details>
+    </div>
+    <div class="panel" data-panel="quiz" hidden>
+      <div class="bar"><i id="grammarBar"></i></div>
+      <div id="grammarQuiz"></div>
+      <div class="actions"><button onclick="grade('grammar')">Check grammar answers</button><button class="ghost" onclick="resetQuiz('grammar')">Try again</button></div>
+      <p id="grammarResult" class="feedback" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- READING -->
+<section id="reading" class="view" hidden style="--accent:var(--c-reading)">
+  <div class="card">
+    <div class="sechead"><div class="ico" style="background:var(--c-reading)"><svg><use href="#i-reading"/></svg></div><div><h2>Reading</h2><div class="small">Two texts · 16 questions · 40 marks</div></div></div>
+    <div class="tabs" role="tablist" data-tabs>
+      <button role="tab" data-tab="method" aria-selected="true">Method</button>
+      <button role="tab" data-tab="types" aria-selected="false">Question types</button>
+      <button role="tab" data-tab="texts" aria-selected="false">Texts</button>
+    </div>
+    <div class="panel" data-panel="method">
+      <p>Use the same five steps for every question.</p>
+      <ol class="steps">
+        <li><div><b>Skim</b><br><span class="small">Read the title and first lines to get the topic.</span></div></li>
+        <li><div><b>Read the question</b><br><span class="small">Underline the key words.</span></div></li>
+        <li><div><b>Locate evidence</b><br><span class="small">Find the sentence that answers it.</span></div></li>
+        <li><div><b>Eliminate unsupported options</b><br><span class="small">Cross out options the text does not support.</span></div></li>
+        <li><div><b>Check the complete answer</b><br><span class="small">Make sure every part of your answer is true.</span></div></li>
+      </ol>
+    </div>
+    <div class="panel" data-panel="types" hidden>
+      <div class="grid">
+        <div class="tile"><b>Specific information</b><p>Find the exact name, number, example or condition.</p></div>
+        <div class="tile"><b>Inference</b><p>Combine textual clues, not personal opinions.</p></div>
+        <div class="tile"><b>Overall meaning</b><p>Choose the answer that covers the entire text.</p></div>
+        <div class="tile"><b>Tone</b><p>Watch for careful words like <i>may</i>, <i>depends</i> and <i>tends to</i>.</p></div>
+      </div>
+    </div>
+    <div class="panel" data-panel="texts" hidden>
+      <div class="grid">
+        <div class="tile"><b>Reading 3A</b><p>Personality: Nature or Nurture?</p><span class="small">Argumentative text</span></div>
+        <div class="tile"><b>Reading 3B</b><p>Megacities and Small Towns</p><span class="small">Expository · C1.1 challenge</span></div>
+      </div>
+      <p>Read the full passages and answer all 16 questions in the <a href="G12_Advanced_Term1_Revision_Booklet.pdf#page=26" target="_blank" rel="noopener">mock exam (booklet)</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing" class="view" hidden style="--accent:var(--c-writing)">
+  <div class="card">
+    <div class="sechead"><div class="ico" style="background:var(--c-writing)"><svg><use href="#i-writing"/></svg></div><div><h2>Writing workshop</h2><div class="small">Summary (15 marks) and comparative essay (25 marks)</div></div></div>
+    <div class="tabs" role="tablist" data-tabs>
+      <button role="tab" data-tab="t11" aria-selected="true">Task 1.1 Summary</button>
+      <button role="tab" data-tab="t12" aria-selected="false">Task 1.2 Essay</button>
+    </div>
+
+    <div class="panel" data-panel="t11">
+      <h3 style="margin-top:0">Compare two viewpoints</h3>
+      <p>Write <b>4–5 sentences</b> in your own words. Do not insert your opinion unless asked.</p>
+      <div class="check" id="sumChecks">
+        <label><input type="checkbox"> Introduce the shared issue.</label>
+        <label><input type="checkbox"> Explain Viewpoint A and its main reason.</label>
+        <label><input type="checkbox"> Explain Viewpoint B and its main reason.</label>
+        <label><input type="checkbox"> Identify an important similarity.</label>
+        <label><input type="checkbox"> State the central difference.</label>
+      </div>
+      <p class="small" style="margin-bottom:2px"><b>Sentence support</b> (tap to add to your answer):</p>
+      <div class="chips" data-insert="summary">
+        <button class="chip">Both viewpoints discuss …</button><button class="chip">Supporters argue that …</button><button class="chip">In contrast, critics believe …</button><button class="chip">Both sides recognise …</button><button class="chip">The main difference is …</button>
+      </div>
+      <textarea id="summary" data-save placeholder="Write your 4–5 sentence summary here…" oninput="countWords('summary','sumCount')"></textarea>
+      <p class="small" id="sumCount">0 words · 0 sentences</p>
+    </div>
+
+    <div class="panel" data-panel="t12" hidden>
+      <h3 style="margin-top:0">Comparative essay</h3>
+      <p>Write <b>at least 220 words</b>, answer all three prompts, and use paragraphs. A useful practice target is 240–280 words.</p>
+      <p class="small" style="margin-bottom:2px"><b>Choose a theme:</b></p>
+      <div class="seg" id="themeSeg"><button aria-pressed="true" data-theme="smart">Smart Homes</button><button aria-pressed="false" data-theme="places">Comparing Places</button></div>
+      <div id="themeBox" class="tile"></div>
+      <h3>Essay plan</h3>
+      <ol class="steps">
+        <li><div><b>Introduction</b><br><span class="small">Introduce both options and your opinion.</span></div></li>
+        <li><div><b>Body paragraph 1</b><br><span class="small">Compare one feature of both options, with an example.</span></div></li>
+        <li><div><b>Body paragraph 2</b><br><span class="small">Compare another feature and explain the effect.</span></div></li>
+        <li><div><b>Body paragraph 3</b><br><span class="small">Justify your preference with a realistic example.</span></div></li>
+        <li><div><b>Conclusion</b><br><span class="small">Summarise and confirm your judgement.</span></div></li>
+      </ol>
+      <p class="small" style="margin-bottom:2px"><b>Useful connectors</b> (tap to add):</p>
+      <div class="chips" data-insert="essay">
+        <button class="chip">both</button><button class="chip">similarly</button><button class="chip">whereas</button><button class="chip">while</button><button class="chip">however</button><button class="chip">in contrast</button><button class="chip">because</button><button class="chip">for example</button><button class="chip">on balance</button><button class="chip">in my view</button>
+      </div>
+      <textarea id="essay" data-save style="min-height:260px" placeholder="Write your comparative essay here…" oninput="countWords('essay','essayCount')"></textarea>
+      <p class="small" id="essayCount">0 words · minimum 220</p>
+    </div>
+
+    <div class="actions" style="border-top:1px solid var(--line);margin-top:16px;padding-top:14px">
+      <button onclick="saveWriting()">Save writing as a text file</button>
+      <button class="ghost" onclick="clearWriting()">Clear my writing</button>
+    </div>
+    <p class="small">Your writing is kept on this device so you can come back to it. This site does not automatically grade essays.</p>
+  </div>
+</section>
+
+<!-- MOCK -->
+<section id="mock" class="view" hidden style="--accent:var(--c-mock)">
+  <div class="card">
+    <div class="sechead"><div class="ico" style="background:var(--c-mock)"><svg><use href="#i-mock"/></svg></div><div><h2>Full 100-mark mock exam</h2><div class="small">Vocabulary · Grammar · Reading · Writing</div></div></div>
+    <p>The booklet contains the complete mock, model answers and answer key. Use it for a timed practice after reviewing the lessons.</p>
+    <ol class="steps">
+      <li><div><b>Revise first</b><br><span class="small">Finish the vocabulary and grammar quizzes above.</span></div></li>
+      <li><div><b>Sit the mock</b><br><span class="small">Work in exam conditions, without notes.</span></div></li>
+      <li><div><b>Check with the answer key</b><br><span class="small">The key is at the end of the PDF.</span></div></li>
+    </ol>
+    <div class="linkcard" style="margin-top:14px">
+      <a class="btn" href="G12_Advanced_Term1_Revision_Booklet.pdf#page=26" target="_blank" rel="noopener">Open mock exam</a>
+      <a class="btn alt" href="G12_Advanced_Term1_Revision_Booklet.pdf" download>Download booklet PDF</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>The Scientific Institute · Grade 12 Advanced · Dr. Mahmoud Ananzeh · 2026–2027</footer>
+
+<script>
+const data={vocab:[['The school introduced an ___ app that lets parents follow homework online.',['privacy','cost-effective','innovative'],2],['Factories use ___ so that robots can complete repetitive tasks quickly.',['automation','consequence','vegetation'],0],['Rapid ___ has created new suburbs around the capital.',['urbanisation','kinaesthetic','database'],0],['Listening to a podcast is an ___ activity.',['voyage','auditory','kinaesthetic'],1],['Poor ___ caused the streets to flood after the storm.',['megacity','drainage','kinaesthetic'],1],['Thick roof ___ keeps the house cool in summer.',['insulation','megacity','innovative'],0],['Traffic ___ delays buses at rush hour.',['congestion','database','biodiversity'],0],['A characteristic passed through genes is ___.',['innovative','auditory','heritable'],2]],grammar:[['If the soil becomes dry, the sensor ___ a signal.',['sends','sent','will sending'],0],['A shaded roof is ___ than an exposed roof.',['cool','coolest','cooler'],2],['A living roof can be ___ cooler than concrete.',['very','much','many'],1],['Rainwater ___ in a tank.',['is stored','are stored','stores'],0],['Could you explain where ___?',['does water collect','water collects','collects water'],1],['It is costly. ___, it offers long-term savings.',['Therefore','Finally','However'],2],['First, inspect the roof. ___, add the protective layer.',['Because','Next','However'],1],['The main road was blocked. ___, we arrived late.',['As a result','In addition','However'],0]]};
+const glossary=[['privacy','Keeping personal information protected'],['automation','Using machines or software to perform tasks automatically'],['cost-effective','Giving good results for the money spent'],['distractions','Things that draw attention away'],['interruptions','Events that stop an activity'],['voyage','A long journey'],['destination','The place a traveller reaches'],['heritable','Passed through genes'],['megacity','A city with more than ten million people'],['urbanisation','Growth of towns and cities'],['congestion','Overcrowding, especially traffic'],['infrastructure','Basic roads, water, power and transport systems'],['kinaesthetic','Connected with movement'],['auditory','Connected with sound'],['insulation','Material reducing heat or sound transfer'],['drainage','Removal of excess water'],['biodiversity','Variety of living organisms'],['vegetation','Plants growing in an area']];
+const themes={smart:'<b>Smart Homes</b><p>Compare a highly automated home with a mainly conventional home. Discuss convenience and running costs; explain which type you prefer and why; support your choice with examples.</p><p class="small" style="margin-bottom:0">Plan around: convenience, costs, privacy, reliability and accessibility.</p>',places:'<b>Comparing Places</b><p>Compare megacities and small towns using the same criteria. Explain which setting you prefer and why.</p><p class="small" style="margin-bottom:0">Plan around: education, jobs, transport, environment, community and affordability.</p>'};
+
+/* safe storage */
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+/* navigation */
+const views=['home','vocab','grammar','reading','writing','mock'];
+function show(id,push){if(!views.includes(id))id='home';
+  views.forEach(v=>document.getElementById(v).hidden=(v!==id));
+  document.querySelectorAll('#nav button').forEach(b=>{if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  if(push!==false&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
+  window.scrollTo({top:0});}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){show(b.dataset.go)}});
+window.addEventListener('popstate',()=>show(location.hash.slice(1),false));
+show(location.hash.slice(1),false);
+
+/* tabs */
+document.querySelectorAll('[data-tabs]').forEach(t=>{const sec=t.parentElement;
+  t.addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;
+    t.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-selected',x===b));
+    sec.querySelectorAll('[data-panel]').forEach(p=>p.hidden=(p.dataset.panel!==b.dataset.tab));});});
+
+/* quizzes */
+function render(type){document.getElementById(type+'Quiz').innerHTML=data[type].map((q,i)=>`<div class="question"><b>${i+1}. ${q[0]}</b>${q[1].map((a,j)=>`<label><input type="radio" name="${type}${i}" value="${j}">${'ABC'[j]}. ${a}</label>`).join('')}<div id="${type}f${i}" class="small"></div></div>`).join('')}
+function grade(type){let score=0,answered=0;data[type].forEach((q,i)=>{const x=document.querySelector(`input[name="${type}${i}"]:checked`),ok=x&&+x.value===q[2];if(x)answered++;if(ok)score++;const el=document.getElementById(`${type}f${i}`);el.textContent=!x?'Choose an answer.':ok?'✓ Correct':'✗ Correct answer: '+'ABC'[q[2]]+'. '+q[1][q[2]];el.className='small '+(ok?'good':'bad')});
+  const n=data[type].length;
+  document.getElementById(type+'Result').textContent=`Score: ${score} / ${n}`+(answered<n?` (${n-answered} unanswered)`:'');
+  document.getElementById(type+'Bar').style.width=(score/n*100)+'%';
+  if(answered===n){const best=Math.max(score,+(store.get('best-'+type)||0));store.set('best-'+type,best);badges();}}
+function resetQuiz(type){render(type);document.getElementById(type+'Result').textContent='';document.getElementById(type+'Bar').style.width='0';}
+function badges(){['vocab','grammar'].forEach(t=>{const b=store.get('best-'+t);document.getElementById('b-'+t).textContent=b===null?'Not tried yet':`Best score: ${b} / ${data[t].length}`})}
+
+/* flashcards */
+let order=glossary.map((_,i)=>i),pos=0;
+function fcShow(){const g=glossary[order[pos]];document.getElementById('fc').classList.remove('flip');document.getElementById('fcFront').textContent=g[0];document.getElementById('fcBack').textContent=g[1];document.getElementById('fcCount').textContent=`${pos+1} / ${glossary.length}`}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+document.getElementById('fcInner').addEventListener('click',()=>document.getElementById('fc').classList.toggle('flip'));
+document.getElementById('fcInner').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();document.getElementById('fc').classList.toggle('flip')}});
+document.getElementById('fcNext').onclick=()=>{pos=(pos+1)%order.length;fcShow()};
+document.getElementById('fcPrev').onclick=()=>{pos=(pos-1+order.length)%order.length;fcShow()};
+document.getElementById('fcShuffle').onclick=()=>{shuffle(order);pos=0;fcShow()};
+
+/* matching */
+let round=[];
+function newMatch(){round=shuffle(glossary.map((_,i)=>i)).slice(0,6);const meanings=shuffle(round.slice());
+  document.getElementById('matchBox').innerHTML=round.map((gi,r)=>`<div class="mrow"><b>${glossary[gi][0]}</b><select id="m${r}" aria-label="Meaning of ${glossary[gi][0]}"><option value="">Choose the meaning…</option>${meanings.map(m=>`<option value="${m}">${glossary[m][1]}</option>`).join('')}</select><span class="r" id="mr${r}"></span></div>`).join('');
+  document.getElementById('matchResult').textContent='';}
+function checkMatch(){let s=0;round.forEach((gi,r)=>{const v=document.getElementById('m'+r).value,ok=v!==''&&+v===gi;if(ok)s++;const el=document.getElementById('mr'+r);el.textContent=v===''?'':ok?'✓':'✗';el.className='r '+(ok?'good':'bad')});
+  document.getElementById('matchResult').textContent=`Score: ${s} / ${round.length}`;}
+
+/* writing */
+function countWords(id,out){const t=document.getElementById(id).value.trim(),n=t?t.split(/\s+/).length:0;document.getElementById(out).textContent=id==='summary'?`${n} words · ${t?(t.match(/[.!?]+(?=\s|$)/g)||[]).length:0} sentences`:`${n} words · ${n>=220?'Minimum reached ✓':'Minimum 220 words'}`}
+document.querySelectorAll('[data-insert]').forEach(box=>box.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;
+  const ta=document.getElementById(box.dataset.insert),txt=c.textContent.replace(/ …$/,' ');
+  const s=ta.selectionStart??ta.value.length,en=ta.selectionEnd??ta.value.length,pre=ta.value.slice(0,s),add=(pre&&!/\s$/.test(pre)?' ':'')+txt;
+  ta.setRangeText(add,s,en,'end');ta.focus();ta.dispatchEvent(new Event('input'))}));
+document.querySelectorAll('textarea[data-save]').forEach(ta=>{const v=store.get('write-'+ta.id);if(v)ta.value=v;
+  ta.addEventListener('input',()=>store.set('write-'+ta.id,ta.value));});
+countWords('summary','sumCount');countWords('essay','essayCount');
+function saveWriting(){const content='GRADE 12 ADVANCED – WRITING PRACTICE\n\nTASK 1.1\n'+document.getElementById('summary').value+'\n\nTASK 1.2\n'+document.getElementById('essay').value;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));a.download='grade12-writing-practice.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function clearWriting(){if(!confirm('Clear both writing boxes on this device?'))return;['summary','essay'].forEach(id=>{document.getElementById(id).value='';store.set('write-'+id,'')});countWords('summary','sumCount');countWords('essay','essayCount')}
+function setTheme(k){document.getElementById('themeBox').innerHTML=themes[k];document.querySelectorAll('#themeSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.theme===k))}
+document.getElementById('themeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setTheme(b.dataset.theme)});
+setTheme('smart');
+
+/* init */
+render('vocab');render('grammar');badges();fcShow();newMatch();
+document.getElementById('words').innerHTML=glossary.map(([w,m])=>`<div class="tile"><b>${w}</b><p class="small" style="margin:4px 0 0">${m}</p></div>`).join('');
+</script>
+</body>
+</html>
